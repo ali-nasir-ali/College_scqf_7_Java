@@ -156,7 +156,7 @@ public class Main {
         sc.nextLine(); // skip line break
 
         if (price < 0) {
-            System.out.print("Price cannot be a negative value, please enter price again: ");
+            System.out.print("Enter amount cannot be a negative value, please try again: ");
             return readValidPrice(sc); // recursive call
         }
         return price;
@@ -165,12 +165,12 @@ public class Main {
 
     // Validating amount in the account is not in negative
     static double CheckValidAmount(Scanner sc,double account) {
-        double amount = sc.nextDouble();
+        double amount = readValidPrice(sc); // valid value is guaranteed to be read;
         double cal_account = account;
         sc.nextLine(); // skip line break
         cal_account -= amount;
         if (cal_account < 0) {
-            System.out.print("Account cannot be a negative value, please enter amount again: ");
+            System.out.print("Account cannot be in negative , please enter new amount: ");
             return CheckValidAmount(sc,account); // recursive call
         }
         return cal_account;
@@ -185,15 +185,15 @@ public class Main {
             int option_acc = input.nextInt();
             if (option_acc == 1) {
                 System.out.print("\n How much would you like to Deposit in Checking Account: ");
-                double amount = readValidPrice(input); // valid value is guaranteed to be read;
-                amount += Checking_Account;
-                System.out.print("The new balance in your Checking account is: " + amount);
+                double amount_check = readValidPrice(input); // valid value is guaranteed to be read;
+                amount_check += Checking_Account;
+                System.out.print("The new balance in your Checking account is: " + amount_check);
                 Continue();
             } else if (option_acc == 2) {
                 System.out.print("\n How much would you like to Deposit in Savings Account: ");
-                double amount = readValidPrice(input); // valid value is guaranteed to be read;
-                amount += Checking_Account;
-                System.out.print("The new balance in your Savings Account is: " + amount);
+                double amount_save = readValidPrice(input); // valid value is guaranteed to be read;
+                amount_save += Savings_Account;
+                System.out.print("The new balance in your Savings Account is: " + amount_save);
                 Continue();
             } else {
                 System.out.println("Please select the correct option");
@@ -212,15 +212,14 @@ public class Main {
             int option_acc = input.nextInt();
             if (option_acc == 1) {
                 System.out.print("\n How much would you like to Withdrawal from Checking Account: ");
-                double balance = CheckValidAmount(input,Checking_Account);
-                System.out.print("The new balance in your Checking account is: " + balance);
+                double balance_check = CheckValidAmount(input,Checking_Account);
+                System.out.print("The new balance in your Checking account is: " + balance_check);
                 Continue();
                 break;
             } else if (option_acc == 2) {
                 System.out.print("\n How much would you like to Withdrawal from Savings Account: ");
-                double amount = readValidPrice(input); // valid value is guaranteed to be read;
-                amount -= Checking_Account;
-                System.out.print("The new balance in your Savings Account is: " + amount);
+                double balance_save = CheckValidAmount(input,Savings_Account);
+                System.out.print("The new balance in your Savings Account is: " + balance_save);
                 Continue();
                 break;
             } else {
@@ -239,15 +238,13 @@ public class Main {
             int option_acc = input.nextInt();
             if (option_acc == 1) {
                 System.out.print("\n How much would you like to Transfer from Checking Account: ");
-                double amount = readValidPrice(input); // valid value is guaranteed to be read;
-                amount -= Checking_Account;
-                System.out.print("The new balance in your Checking account is: " + amount);
+                double balance_check = CheckValidAmount(input,Checking_Account);
+                System.out.print("The new balance in your Checking account after Transfer is: " + balance_check);
                 Continue();
             } else if (option_acc == 2) {
                 System.out.print("\n How much would you like to Transfer from Savings Account: ");
-                double amount = readValidPrice(input); // valid value is guaranteed to be read;
-                amount -= Checking_Account;
-                System.out.print("The new balance in your Savings Account is: " + amount);
+                double balance_save = CheckValidAmount(input,Savings_Account);
+                System.out.print("The new balance in your Savings Account after Transfer is: " + balance_save);
                 Continue();
             } else {
                 System.out.println("Please select the correct option");
