@@ -31,10 +31,13 @@ public class Main {
 
     public static void main(String[] args) throws FileNotFoundException{
 
-        String password = "GC";
+        String password = "g";
         int fail = 3;
 
-        do{
+        //countOccurrence();
+       // findHighest();
+
+         do{
             System.out.println("Welcome to the Glasgow Student Grade App.");
             System.out.println("Please enter your Password to continue :");
             String login = in_Variable.nextLine();
@@ -53,6 +56,8 @@ public class Main {
         } while(fail != 0);
         System.out.println("Number of attempt exceeded. You are now locked out.");
         System.exit(0);
+
+
     }
 
     public static void Menu() throws FileNotFoundException{
@@ -154,11 +159,39 @@ public class Main {
 
     public static void countOccurrence() {
 
+        int count = 0;
+
+        for(int i=0; i< award.length; i++){
+            if(award[i].equals("A")){
+                count++;
+            }
+        }
+        System.out.println("There are: "+ count+" 'A' passes in the class.");
     }
     public static void findHighest() {
 
+        int highestMark = totalGrades[0];
+        String student = " ";
+
+        for(int i=1; i< totalGrades.length; i++){
+            if( totalGrades[i] > highestMark ){
+                highestMark = totalGrades[i];
+                student = firstName[i];
+            }
+        }
+        System.out.println("Highest Mark of "+ highestMark+" was achived by "+student+" in the class.");
     }
     public static void findLowest() {
 
+        int lowestMark = totalGrades[0];
+        String student = " ";
+
+        for(int i=1; i< totalGrades.length; i++){
+            if( totalGrades[i] < lowestMark ){
+                lowestMark = totalGrades[i];
+                student = firstName[i];
+            }
+        }
+        System.out.println("Lowest Mark of "+ lowestMark+" was achived by "+student+" in the class.");
     }
 }
