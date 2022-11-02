@@ -98,14 +98,13 @@ public class Main {
                 SlowestPrintOut();
             }
             else if (option == 5) {
-                //findLowest();
+                UserTimeOfRunner();
             }
             else if (option == 6) {
-                //findLowest();
+                UserTimeRunOccurence();
             }
             else if (option == 7) {
-                //in_File.close();
-                System.out.println("Thank you for using the Cardonald Colleg Grade App. Goodbye...");
+                System.out.println("Thank you and Goodbye.");
                 System.exit(0);
             }
 
@@ -250,72 +249,61 @@ public class Main {
         }
     }
 
-/*
 
-    public static void calculateGrade() {
 
-        for(int i=0; i< totalGrades.length; i++){
-            totalGrades[i] = halfTermMarks[i] + fullTermMarks[i];
+    //         ------------------------------------------------------------------------------
+    //     Option 5
+    //  In this below module the program will Find hte user entered time of runners from the list
+    public static void UserTimeOfRunner() {
+        System.out.printf("\n\nFinding Runners from the list");
+        System.out.printf("\nPlease enter time in seconds : ");
+        int RunnerTime = input.nextInt();
 
-            if(totalGrades[i] >= 80 && totalGrades[i] <= 100){
-                award[i] = "A";
-                System.out.println("Well Done "+firstName[i] +" you got an A");
-            } else if (totalGrades[i] >= 70 && totalGrades[i] <80) {
-                award[i] = "B";
-                System.out.println("Well Done "+firstName[i] +" you got a B");
-            }else if (totalGrades[i] >= 60 && totalGrades[i] <70) {
-                award[i] = "C";
-                System.out.println("Well Done "+firstName[i] +" you got a C");
-            }else if (totalGrades[i] >= 50 && totalGrades[i] <60) {
-                award[i] = "D";
-                System.out.println("Well Done "+firstName[i] +" you got a D");
+        try{
+            for( int i=0 ; i < RunTime.length; i++) {
+                //int run = RunTime[i] * 60;
+                int run = RunTime[i] ;
+                if (run == RunnerTime) {
+                    System.out.printf("\n\nThe enquire person is " + firstName[i] + " " + " " + secondName[i] + " " + RunTime[i]);
+                    PrintWriter out = new PrintWriter("src/EnquiredRunner.txt");
+                    out.print("\n\nThe Slowest person is " + firstName[i] + " " + " " + secondName[i] + " " + RunTime[i]);
+                    out.close();
+                    break;
+                }
             }
-            else  {
-                award[i] = "No Award";
-                System.out.println("Unfortunately "+firstName[i] +" you failed to achieve a grade. Better luck next time.");
-            }
+
+        }catch (Exception e){
+            System.out.println("Unexpected error: please run program again.....");
         }
-        System.out.println("\n\n Full Grades"+Arrays.toString(totalGrades));
-        System.out.println(" Full Awards"+Arrays.toString(award));
     }
 
-    public static void countOccurrence() {
 
-        int count = 0;
+    //         ------------------------------------------------------------------------------
+    //     Option 6
+    //  In this below module the program will Find hte user entered time of runners and see how many times it's recorded from the list
+    public static void UserTimeRunOccurence() {
+        System.out.printf("\n\nFinding how many Runners have same run time from the list");
+        System.out.printf("\nPlease enter time in seconds : ");
+        int RunnerTime = input.nextInt();
+        int timeOccurrence = 0;
 
-        for(int i=0; i< award.length; i++){
-            if(award[i].equals("A")){
-                count++;
+        try{
+            for( int i=0 ; i < RunTime.length; i++) {
+                //int run = RunTime[i] * 60;
+                int run = RunTime[i];
+                if (run == RunnerTime) {
+                    timeOccurrence++;
+                    System.out.printf("\n\nThe enquire person is " + firstName[i] + " " + " " + secondName[i] + " " + RunTime[i]+"  Time Occurrence "+timeOccurrence);
+                    PrintWriter out = new PrintWriter("src/UserGivenTimeRunOccurence.txt");
+                    out.print("\n\nThe Slowest person is " + firstName[i] + " " + " " + secondName[i] + " " + RunTime[i]);
+                    out.close();
+                }
             }
+        }catch (Exception e){
+            System.out.println("Unexpected error: please run program again.....");
         }
-        System.out.println("There are: "+ count+" 'A' passes in the class.");
-    }
-    public static void findHighest() {
-
-        int highestMark = totalGrades[0];
-        String student = " ";
-
-        for(int i=1; i< totalGrades.length; i++){
-            if( totalGrades[i] > highestMark ){
-                highestMark = totalGrades[i];
-                student = firstName[i];
-            }
-        }
-        System.out.println("Highest Mark of "+ highestMark+" was achived by "+student+" in the class.");
-    }
-    public static void findLowest() {
-
-        int lowestMark = totalGrades[0];
-        String student = " ";
-
-        for(int i=1; i< totalGrades.length; i++){
-            if( totalGrades[i] < lowestMark ){
-                lowestMark = totalGrades[i];
-                student = firstName[i];
-            }
-        }
-        System.out.println("Lowest Mark of "+ lowestMark+" was achived by "+student+" in the class.");
     }
 
- */
+  // End of Program
+
 }
