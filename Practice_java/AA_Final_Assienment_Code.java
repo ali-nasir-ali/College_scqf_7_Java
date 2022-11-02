@@ -3,29 +3,41 @@
 // 31/10/2022
 // Final Project Code part
 
+//         ------------------------------------------------------------------------------
+//    Java Module Imports
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.Scanner;
+import java.io.PrintWriter;
 import java.util.SortedMap;
 
+import static java.lang.System.in;
+
+//         ------------------------------------------------------------------------------
+//   Global variables declared
 public class Main {
 
     // Global Variables
     public static File fileName; // Read file stored here
 
-    public static Scanner input = new Scanner(System.in); // taking in user data
-    public static Scanner in_File = new Scanner(System.in); // Reading in File data
+    public static Scanner input = new Scanner(in); // taking in user data
+    public static Scanner in_File = new Scanner(in); // Reading in File data
 
     // Declare Global Arrays
 
     public static String [][] RunnersRecords = new String[16][3];
     public static String [] firstName = new String[16];
     public static String [] secondName = new String[16];
-    public static int [] listOfRun = new int[16];
+    public static int []  RunTime = new int[16];
+
+    // final sorted run time
+    public static String [][]  SortRunTime = new String[16][3];
 
     // Main Method were we will have password
 
+    //         ------------------------------------------------------------------------------
+    //    Start of main program part
     public static void main(String[] args) throws FileNotFoundException{
 
         String password = "g"; // clyderunners
@@ -54,6 +66,8 @@ public class Main {
         System.exit(0);
     }
 
+    //         ------------------------------------------------------------------------------
+    // Password and main start of program
     // If the user enters a right password they will then be given a menu
     public static void Menu() throws FileNotFoundException{
 
@@ -73,16 +87,16 @@ public class Main {
             if(option == 1){
 
                 readFile();
-
+                SortRunners();
             }
             else if (option == 2) {
-                //calculateGrade();
+                outputRecordedTime();;
             }
             else if (option == 3) {
-                //countOccurrence();
+                FastPrintOut();
             }
             else if (option == 4) {
-                //findHighest();
+                SlowestPrintOut();
             }
             else if (option == 5) {
                 //findLowest();
@@ -91,7 +105,7 @@ public class Main {
                 //findLowest();
             }
             else if (option == 7) {
-                in_File.close();
+                //in_File.close();
                 System.out.println("Thank you for using the Cardonald Colleg Grade App. Goodbye...");
                 System.exit(0);
             }
@@ -99,6 +113,8 @@ public class Main {
         } while(option != 7);
     }
 
+    //         ------------------------------------------------------------------------------
+    //     Option 1
     // In here we will read the file of raw data and parse it in to an array so it easier to read and manipulate
     public static void readFile() throws FileNotFoundException{
 
@@ -123,41 +139,98 @@ public class Main {
             // so to populate runners names and unnerving times
         }
 
-        /*
-        String [] colume = new String[0];
-        System.out.printf("\n\n ::  ");
-        for(int i=0; i < RunnersRecords.length; i++){
-            //Line = oneline.split(" "); // regex to parse it with spaces in between words Z
-            colume = oneline.split(" "); // regex to parse it with spaces in between words Z
-
-            System.out.println(Arrays.deepToString(colume));
-            for (int j=0; j < 3 ; j++){
-                RunnersRecords[i][j] = colume[j];
-
-                System.out.println(" ====  "+colume[j]);
-                //System.out.println(RunnersRecords[i][j]);
-            }
-        }
-
-         */
-
-
         // this will show the user of app the whole parsed file
-        System.out.println("Runners Records : \n\n"+Arrays.deepToString(RunnersRecords));
+        System.out.println("\n\nRunners Records : \n"+Arrays.deepToString(RunnersRecords));
 
         for(int i=0; i<RunnersRecords.length; i++){  // running list with all the data of the runners
-            listOfRun[i] = Integer.parseInt(RunnersRecords[i][2]); // running list with all the runners runs record
-            System.out.println("First Names are: "+Arrays.toString(firstName));
+            RunTime[i] = Integer.parseInt(RunnersRecords[i][2]); // running list with all the runners runs record
             secondName[i] = RunnersRecords[i][1]; // runners second name
             firstName[i] = RunnersRecords[i][0];  // runners first name
         }
 
         System.out.println("First Names are: "+Arrays.toString(firstName));
         System.out.println("Second Names are: "+Arrays.toString(secondName));
-        System.out.println("Course Grades are: "+Arrays.toString(listOfRun));
+        System.out.println("Run Time are: "+Arrays.toString(RunTime));
+
+        in_File.close(); // closing the file
 
     }
 
+
+    // in this below module the program will sort the runners from slowest to fastest
+    public static void SortRunners() throws FileNotFoundException {
+        //Arrays.sort(RunTime);
+        //System.out.println("First Names are: "+Arrays.toString(RunTime));
+
+        String foreName = null;
+        String sirName =null ;
+
+        SortRunTime = RunnersRecords;
+
+        String temp;
+        for( int out=1 ; out < SortRunTime.length; out++) {
+            for (int inner = out; inner >0 ; inner--) {
+                 int x = Integer.parseInt(SortRunTime[inner][2]);
+                 int y = Integer.parseInt(SortRunTime[inner-1][2]);
+                if ( x<y ) {
+                    temp = SortRunTime[inner][2];
+                    SortRunTime[inner][2] = SortRunTime[inner-1][2];
+                    SortRunTime[inner-1][2] = temp;
+                }
+            }
+        }
+        //System.out.println("First Names are: "+Arrays.toString(SortRunTime));
+
+    }
+
+    //         ------------------------------------------------------------------------------
+    //     Option 2
+    //  printing it out on a file the final sort out list of runners
+    public static void outputRecordedTime() {
+        System.out.printf("\n ====  started output\n\n");
+
+        try{
+            PrintWriter out = new PrintWriter("src/SlowToFastRunners.txt");
+for(int i=0; i<SortRunTime.length; i++) {
+    out.print("\n\nThe Slowest person is " + SortRunTime[i][0] + " " + " " + SortRunTime[i][1] + " " + SortRunTime[i][2]);
+}
+            out.close();
+            System.out.println("\n\nSorted Records of Slowest to fastest Runners : \n"+Arrays.deepToString(SortRunTime));
+
+        }catch (Exception e){
+            System.out.println("Unexpected error: please run program again.....");
+        }
+    }
+
+
+
+    //         ------------------------------------------------------------------------------
+    //     Option 3
+    //  In this below module the program will Print out the Fastest runners from the list
+    public static void FastPrintOut() {
+
+        try{
+        System.out.printf("\n\nThe Slowest person is " + SortRunTime[0][0] + " " + " " + SortRunTime[0][1] + " " + SortRunTime[0][2]);
+
+    }catch (Exception e){
+        System.out.println("Unexpected error: please run program again.....");
+    }
+    }
+
+
+
+    //         ------------------------------------------------------------------------------
+    //     Option 4
+    //  In this below module the program will Print out the Fastest runners from the list
+    public static void SlowestPrintOut() {
+
+        try{
+            System.out.printf("\n\nThe Slowest person is " + SortRunTime[15][0] + " " + " " + SortRunTime[15][1] + " " + SortRunTime[15][2]);
+
+        }catch (Exception e){
+            System.out.println("Unexpected error: please run program again.....");
+        }
+    }
 
 /*
 
