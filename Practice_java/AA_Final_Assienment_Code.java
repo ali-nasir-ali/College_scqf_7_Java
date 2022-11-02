@@ -87,10 +87,9 @@ public class Main {
             if(option == 1){
 
                 readFile();
-                SortRunners();
             }
             else if (option == 2) {
-                outputRecordedTime();;
+                SortRunners();;
             }
             else if (option == 3) {
                 FastPrintOut();
@@ -156,14 +155,12 @@ public class Main {
 
     }
 
-
+    //         ------------------------------------------------------------------------------
+    //     Option 2
     // in this below module the program will sort the runners from slowest to fastest
     public static void SortRunners() throws FileNotFoundException {
         //Arrays.sort(RunTime);
         //System.out.println("First Names are: "+Arrays.toString(RunTime));
-
-        String foreName = null;
-        String sirName =null ;
 
         SortRunTime = RunnersRecords;
 
@@ -180,20 +177,17 @@ public class Main {
             }
         }
         //System.out.println("First Names are: "+Arrays.toString(SortRunTime));
-
+        outputRecordedTime();
     }
 
-    //         ------------------------------------------------------------------------------
-    //     Option 2
     //  printing it out on a file the final sort out list of runners
     public static void outputRecordedTime() {
-        System.out.printf("\n ====  started output\n\n");
 
         try{
             PrintWriter out = new PrintWriter("src/SlowToFastRunners.txt");
-for(int i=0; i<SortRunTime.length; i++) {
-    out.print("\n\nThe Slowest person is " + SortRunTime[i][0] + " " + " " + SortRunTime[i][1] + " " + SortRunTime[i][2]);
-}
+             for(int i=0; i<SortRunTime.length; i++) {
+                  out.print("\n\nThe Slowest person is " + SortRunTime[i][0] + " " + " " + SortRunTime[i][1] + " " + SortRunTime[i][2]);
+              }
             out.close();
             System.out.println("\n\nSorted Records of Slowest to fastest Runners : \n"+Arrays.deepToString(SortRunTime));
 
@@ -208,9 +202,21 @@ for(int i=0; i<SortRunTime.length; i++) {
     //     Option 3
     //  In this below module the program will Print out the Fastest runners from the list
     public static void FastPrintOut() {
+        int line =0;
+        int max= RunTime[0];
 
         try{
-        System.out.printf("\n\nThe Slowest person is " + SortRunTime[0][0] + " " + " " + SortRunTime[0][1] + " " + SortRunTime[0][2]);
+            for( int i=0 ; i < RunTime.length; i++) {
+                if (RunTime[i] > max) {
+                    max = RunTime[i];
+                    line = i;
+                }
+            }
+        System.out.printf("\n\nThe Fastest person is " + firstName[line] + " " + " " + secondName[line] + " " + RunTime[line]);
+
+            PrintWriter out = new PrintWriter("src/FastestRunner.txt");
+            out.print("\n\nThe Fastest person is " + firstName[line] + " " + " " + secondName[line] + " " + RunTime[line]);
+            out.close();
 
     }catch (Exception e){
         System.out.println("Unexpected error: please run program again.....");
@@ -223,9 +229,21 @@ for(int i=0; i<SortRunTime.length; i++) {
     //     Option 4
     //  In this below module the program will Print out the Fastest runners from the list
     public static void SlowestPrintOut() {
+        int line =0;
+        int max= RunTime[0];
 
         try{
-            System.out.printf("\n\nThe Slowest person is " + SortRunTime[15][0] + " " + " " + SortRunTime[15][1] + " " + SortRunTime[15][2]);
+            for( int i=0 ; i < RunTime.length; i++) {
+                if (RunTime[i] < max) {
+                    max = RunTime[i];
+                    line = i;
+                }
+            }
+            System.out.printf("\n\nThe Slowest person is " + firstName[line] + " " + " " + secondName[line] + " " + RunTime[line]);
+
+            PrintWriter out = new PrintWriter("src/SlowestRunner.txt");
+            out.print("\n\nThe Slowest person is " + firstName[line] + " " + " " + secondName[line] + " " + RunTime[line]);
+            out.close();
 
         }catch (Exception e){
             System.out.println("Unexpected error: please run program again.....");
