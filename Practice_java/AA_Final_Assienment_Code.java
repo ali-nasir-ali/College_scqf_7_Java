@@ -11,7 +11,6 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.io.PrintWriter;
 import java.util.SortedMap;
-
 import static java.lang.System.in;
 
 //         ------------------------------------------------------------------------------
@@ -42,9 +41,6 @@ public class Main {
 
         String password = "g"; // clyderunners
         int fail = 3;
-
-        // countOccurrence();
-        // findHighest();
 
         do{
             System.out.println("Welcome to Glasgow Clyde Runners Club.");
@@ -174,8 +170,7 @@ public class Main {
                     SortRunTime[inner-1][2] = temp;
                 }
             }
-        }
-        //System.out.println("First Names are: "+Arrays.toString(SortRunTime));
+        };
         outputRecordedTime();
     }
 
