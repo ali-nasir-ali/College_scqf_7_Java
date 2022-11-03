@@ -170,7 +170,7 @@ public class Main {
                     SortRunTime[inner-1][2] = temp;
                 }
             }
-        };
+        }
         outputRecordedTime();
     }
 
@@ -261,7 +261,7 @@ public class Main {
                 if (run == RunnerTime) {
                     System.out.printf("\n\nThe enquire person is " + firstName[i] + " " + " " + secondName[i] + " " + RunTime[i]);
                     PrintWriter out = new PrintWriter("src/EnquiredRunner.txt");
-                    out.print("\n\nThe Slowest person is " + firstName[i] + " " + " " + secondName[i] + " " + RunTime[i]);
+                    out.print("\n\nThe User given Time match runner is " + firstName[i] + " " + " " + secondName[i] + " " + RunTime[i]);
                     out.close();
                     break;
                 }
@@ -290,7 +290,7 @@ public class Main {
                     timeOccurrence++;
                     System.out.printf("\n\nThe enquire person is " + firstName[i] + " " + " " + secondName[i] + " " + RunTime[i]+"  Time Occurrence "+timeOccurrence);
                     PrintWriter out = new PrintWriter("src/UserGivenTimeRunOccurence.txt");
-                    out.print("\n\nThe Slowest person is " + firstName[i] + " " + " " + secondName[i] + " " + RunTime[i]);
+                    out.print("\n\nThe User Given Run time Match Runner are " + firstName[i] + " " + " " + secondName[i] + " " + RunTime[i]);
                     out.close();
                 }
             }
