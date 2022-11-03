@@ -1,0 +1,181 @@
+/ program for rading a file with runners names and running time
+// then giving the user of this app to find out the fastest, slowest and sorting
+// the runs and saving it to a local text file
+
+-------------------------------
+// improting in java modules to be used in this app
+
+//    Java Module Imports
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Arrays;
+import java.util.Scanner;
+import java.io.PrintWriter;
+import java.util.SortedMap;
+
+import static java.lang.System.in;
+
+
+-------------------------------
+
+1.// declaring global variables so they can be used though out the app with out passing there values
+
+2. Initialize fileName of type File  // the read file will be stored here
+2.1 Initialize scanner object input for user input
+2.2 Initialize scanner object in_file for file reading 
+2.3 Initialize RunnersRecords of type String with capacity to store 16 values by 3 values
+3. Initialize firstName of type String with capacity to store 16 values
+4. Initialize secondName of type String with capacity to store 16 values
+5. Initialize RunTime of type String with capacity to store 16 values
+6. Initialize SortRunTime of type String with capacity to store 16 values by 3 value
+
+7. // start of the program
+
+8.   String password = clyderunners
+9.   int fail = 3
+10.  do loop { 
+11.      print out welcome to glasgow clyde runners club
+12.      Prompt user to enter a password
+13.      Get user password
+14.      if user passweord is correct {
+15.         print out password right
+16.         jumpto Menu() funtion
+17.      }else{
+18.        fail --
+19.        print out your passweord is incorect
+20.        print out fail attempt left
+21.       }
+22.       break while if fail reches zero
+23.       print out numbers of attempts exedded and the user is lookout  
+
+24. // Menu() option funtion after password is correct
+25. int optnion = 0
+26. do loop{
+27.   print out Please choose from the following options
+28.   print out 1. Read and Display File
+29.   print out 2. Sort and Print Recorded Times
+30.   print out 3. Find and Print Fastest Time
+31.   print out 4. Find and Print Slowest Time
+32.   print out 5. Search
+33.   print out 6. Time Occurrence
+34.   print out 7. Exit Program
+35.   get users chooice
+36.   if option equales 1
+37.      readfile() funtion
+38.   else if option equales 2
+39.      SortRunners() funtion 
+40.   else if option equales 3
+41.      FastPrintOut() funtion 
+42.   else if option equales 4
+43.      SlowestPrintOut() funtion 
+44.   else if option equales 5
+45.      UserTimeOfRunner() funtion 
+46.   else if option equales 6
+47.      UserTimeRunOccurence() funtion 
+48.   else if option equales 7
+49.      print out thank you and good bye 
+50.      system exit and ends the program
+51. }while loop ends if option 7 is given
+
+52. // option 1 readfile()  
+53. nameofFile = loads the files from local storage
+54. fileName = File(nameofFile)
+55. string oneline
+56. int a = 0
+57. while loop{ file read line by line 
+58.    oneline = infile reads line by line
+59.    string array colume = empty
+60.    colume = online split by " "
+61.    print out colume
+62.    for loop{j=0 ,j less then 3
+63.        RunnersRecords[a][j] = colume[3]
+64.      } a++
+65. }
+66. print out RunnersRecords
+67. print out first name
+68. print out second name
+69. print out run time
+70. file close
+
+80. // option 2 SortRunners()
+81. SortRunTime = RunnersRecords
+82. string temp
+83. for loop { out =1, out less then SortRunTime length
+84.    for loop { inner =out, inner greater then 0
+85.       x = SortRunTime [inner][2] 
+86.       y = SortRunTime [inner-1][2]
+87.       if {x is less then y
+88.          temp = SortRunTime [inner][2]
+89.          SortRunTime [inner][2] = SortRunTime [inner-1][2]
+90.          SortRunTime [inner-1][2] = temp
+91. }   }  }
+92. outputRecordedTime() funtion
+
+93. // outputRecordedTime() funtion
+94. try { write to local file with name SlowToFastRUnners.txt
+95.     for loop{ i=0, i less then SortRunTime
+96.     write to file first name, second name and run time
+97.     } catch print out unexpected error }
+        
+98. // option 3 FastPrintOut() funtion
+99. int line = 0
+100. int max = RunTime[0]
+101. try{ 
+102.    for loop{ i =0, i less then RunTime lendth
+103.       if { RunTime[i] is bigger then max
+104.         max = RunTime[i]
+105.         line = i
+106.    }     }
+107. print out fastest person firstName[line] secondName[line] RunTime[line]
+108. write to file by name FastestPerson.txt
+109. print out fastest person firstName[line] secondName[line] RunTime[line]
+110. file close
+111. }catch exception print out unexpected error }
+
+112. // option 4 SlowestPrintOut() funtion
+113. int line = 0
+114. int max = RunTime[0]
+115. try{ 
+116.    for loop{ i =0, i less then RunTime length
+117.       if { RunTime[i] is lesser then max
+118.         max = RunTime[i]
+119.         line = i
+120.    }     }
+121. print out slowest person firstName[line] secondName[line] RunTime[line]
+122. write to file by name SlowestPerson.txt
+123. print out Slowest person firstName[line] secondName[line] RunTime[line]
+124. file close
+125. }catch exception print out unexpected error }
+
+126. // option 5 UserTimeOfRunner() funtion
+127. print out finding runner from list
+128. get users time in RunnerTime
+129. try{ 
+130.    for loop{ i =0, i less then RunTime length
+131.       int run = RunTime[i]
+132.       if { run is equal to RunnerTime
+133.         print out firstName[i]. secondName[i] and RunTime[i]
+134.         write to file with name EnquiredRunner.txt
+135.         save to file firstName[i]. secondName[i] and RunTime[i]
+136.         print out user given time match runner are firstName[line] secondName[line] RunTime[line]
+137.         close file
+138.         break out of loop
+139.  } }  } catch exception print out unexpected error } }
+
+
+140. // option 5 UserTimeRunOccurence() funtion
+141. print out finding runner from list
+142. get users time in RunnerTime
+143. int timeOccurence = 0
+144. try{ 
+145.    for loop{ i =0, i less then RunTime length
+146.       int run = RunTime[i]
+147.       if { run is equal to RunnerTime
+148.         timeOccurence ++
+149.         print out firstName[i]. secondName[i] and RunTime[i]
+150.         write to file with name UserGivenTimeOccurence.txt
+151.         save to file firstName[i]. secondName[i] and RunTime[i]
+152.         print out user given time matches runners firstName[line] secondName[line] RunTime[line]
+153.         close file
+154.         break out of loop
+155.  } }  } catch exception print out unexpected error
