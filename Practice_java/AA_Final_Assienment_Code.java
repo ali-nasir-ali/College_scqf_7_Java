@@ -159,13 +159,24 @@ public class Main {
 
         SortRunTime = RunnersRecords;
 
-        String temp;
+        String tempFirstname;
+        String tempSecondName;
+        String tempTime;
         for( int out=1 ; out < SortRunTime.length; out++) {
             for (int inner = out; inner >0 ; inner--) {
                  int x = Integer.parseInt(SortRunTime[inner][2]);
                  int y = Integer.parseInt(SortRunTime[inner-1][2]);
                 if ( x<y ) {
-                    temp = SortRunTime[inner][2];
+                       // tempFirstname
+                    tempFirstname = SortRunTime[inner][0];
+                    SortRunTime[inner][0] = SortRunTime[inner-1][0];
+                    SortRunTime[inner-1][0] = temp;
+                       // tempSecondName
+                    tempSecondName = SortRunTime[inner][1];
+                    SortRunTime[inner][1] = SortRunTime[inner-1][1];
+                    SortRunTime[inner-1][1] = temp;
+                        // tempTime
+                    tempTime = SortRunTime[inner][2];
                     SortRunTime[inner][2] = SortRunTime[inner-1][2];
                     SortRunTime[inner-1][2] = temp;
                 }
