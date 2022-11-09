@@ -170,15 +170,15 @@ public class Main {
                        // tempFirstname
                     tempFirstname = SortRunTime[inner][0];
                     SortRunTime[inner][0] = SortRunTime[inner-1][0];
-                    SortRunTime[inner-1][0] = temp;
+                    SortRunTime[inner-1][0] = tempFirstname;
                        // tempSecondName
                     tempSecondName = SortRunTime[inner][1];
                     SortRunTime[inner][1] = SortRunTime[inner-1][1];
-                    SortRunTime[inner-1][1] = temp;
+                    SortRunTime[inner-1][1] = tempSecondName;
                         // tempTime
                     tempTime = SortRunTime[inner][2];
                     SortRunTime[inner][2] = SortRunTime[inner-1][2];
-                    SortRunTime[inner-1][2] = temp;
+                    SortRunTime[inner-1][2] = tempTime;
                 }
             }
         }
